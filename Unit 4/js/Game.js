@@ -16,13 +16,13 @@ class Game {
 */
   createPhrases () {
     const newPhrases = [
-      new Phrase ('We live in a twilight world'),
-      new Phrase ('There are no friends at dusk'),
-      new Phrase ('By any means necessary'),
-      new Phrase ('Just do it'),
-      new Phrase ('Heavy is the head that wears the crown'),
-      new Phrase ('Beating around the bush'),
-      new Phrase ('A fool and his money are soon parted')
+      new Phrase('We live in a twilight world'),
+      new Phrase('There are no friends at dusk'),
+      new Phrase('By any means necessary'),
+      new Phrase('Just do it'),
+      new Phrase('Heavy is the head that wears the crown'),
+      new Phrase('Beating around the bush'),
+      new Phrase('A fool and his money are soon parted')
     ]
     return newPhrases
   }
@@ -36,4 +36,38 @@ class Game {
     const randomPhrase = this.phrases[randomIndex]
     return randomPhrase
   }
+
+  /**
+* Begins game by selecting a random phrase and displaying it to user
+*/
+  startGame () {
+    document.getElementById('overlay').style.display = 'none'
+    this.activePhrase = this.getRandomPhrase()
+    this.activePhrase.addPhraseToDisplay()
+  }
+
+  handlerInteraction (button) {
+    const buttonHtml = buttonHtml
+    button.disabled = true
+    if (this.activePhrase.selectedLetter(buttonHtml)) {
+      button.classList.add('chosen')
+      this.activePhrase.matchedLetter(buttonHtml)
+      this.checkForWin()
+
+    if (this.checkForWin()){
+     this.gameOver(true) 
+    } else {
+      button.classList.add('wrong')
+      this.removeLife()
+    }  
+  }
+  checkForWin(){
+    const hideClass = document.getElementById('hide')
+    if (hideClass.length === 0){
+     return true; 
+    } else {
+      return false
+    }
+  }
+  
 }
