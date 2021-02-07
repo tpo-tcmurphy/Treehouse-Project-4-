@@ -6,13 +6,13 @@ class Game {
   constructor () {
     this.missed = 0
     this.phrases = [
-      new Phrase('We live in a twilight world'),
-      new Phrase('There are no friends at dusk'),
-      new Phrase('By any means necessary'),
+      new Phrase('Yeah Baby Yeah'),
+      new Phrase('I know kung fu'),
+      new Phrase('I pity the fool'),
       new Phrase('Just do it'),
-      new Phrase('Heavy is the head that wears the crown'),
-      new Phrase('Beating around the bush'),
-      new Phrase('A fool and his money are soon parted')
+      new Phrase('You talking to me'),
+      new Phrase('You Shall Not Pass'),
+      new Phrase('This is Sparta')
     ]
     this.activePhrase = null
   }
@@ -36,7 +36,11 @@ class Game {
     this.activePhrase.addPhraseToDisplay()
   }
 
-  // Checks to see if player has revealed all of the letters in the active phrase
+  /**
+* Checks for winning move
+* @return {boolean} True if game has been won, false if game wasn't
+won
+*/
   checkForWin () {
     const shown = document.getElementsByClassName('letter')
     const shownArr = [...shown]
@@ -49,7 +53,10 @@ class Game {
     return true
   }
 
-  // If player loses 5 lives, game ends
+  /**
+* Displays game over message
+* @param {boolean} gameWon - Whether or not the user won the game
+*/
 
   gameOver (gameWon) {
     const startScreen = document.getElementById('overlay')
@@ -61,12 +68,16 @@ class Game {
       gameEndMessage.textContent = 'Great Job, You Won!'
       gameEndOverlay.classList.replace('start', 'win')
     } else {
-      gameEndMessage.textContent = 'You Lost... Beter Luck Next Time!'
+      gameEndMessage.textContent = 'So Sorry You Lost... Beter Luck Next Time!'
       gameEndOverlay.classList.replace('start', 'lose')
     }
   }
 
-  // Removes a life if player is wrong
+  /**
+* Increases the value of the missed property
+* Removes a life from the scoreboard
+* Checks if player has remaining lives and ends game if player is out
+*/
   removeLife () {
     const heart = document.getElementsByTagName('img')
     heart[this.missed].setAttribute('src', 'images/lostHeart.png')
@@ -77,9 +88,11 @@ class Game {
     }
   }
 
-  // Disable selected letter's onscreen keyboard button
-  // If phrase dosent include guessed letter , add wrong (CSS class)
-  // If phrase includes the right letter, add correct (CSS class)
+ /**
+* Handles onscreen keyboard button clicks
+* @param (HTMLButtonElement) button - The clicked button element
+*/
+
   handleInteraction (keyButton) {
     const keys = document.getElementsByClassName('key')
     for (const key of keys) {

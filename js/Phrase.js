@@ -8,7 +8,9 @@ class Phrase {
     this.phrase = phrase.toLowerCase()
   }
 
-  // Adds letter placeholders to the display when the game starts.
+  /**
+* Display phrase on game board
+*/
   addPhraseToDisplay () {
     const chars = this.phrase.split('')
     const patt = /[a-z]/
@@ -33,7 +35,7 @@ class Phrase {
     }
   }
 
-  // Checks to see if the letter selected by player matches a letter in the phrase
+  // Checks to see of if letter matches the letter in phrase
   checkLetter (letter) {
     if (this.phrase.toLowerCase().includes(letter)) {
       return true
@@ -42,7 +44,7 @@ class Phrase {
     }
   }
 
-  // Reveals the letters on the board that match the selection
+  // Shows matched letters
 
   showMatchedLetter (letter) {
     const matched = document.querySelectorAll(`.${letter}`)
