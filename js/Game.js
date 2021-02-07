@@ -6,11 +6,11 @@ class Game {
   constructor () {
     this.missed = 0
     this.phrases = [
-      new Phrase('Yeah Baby Yeah'),
+      new Phrase('We Live in a twilight World'),
       new Phrase('I know kung fu'),
-      new Phrase('I pity the fool'),
+      new Phrase('I have a dream'),
       new Phrase('Just do it'),
-      new Phrase('You talking to me'),
+      new Phrase('There are no Friends at Dusk'),
       new Phrase('You Shall Not Pass'),
       new Phrase('This is Sparta')
     ]
@@ -88,7 +88,7 @@ won
     }
   }
 
- /**
+  /**
 * Handles onscreen keyboard button clicks
 * @param (HTMLButtonElement) button - The clicked button element
 */
