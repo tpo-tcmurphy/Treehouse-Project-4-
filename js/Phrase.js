@@ -8,45 +8,44 @@ class Phrase {
     this.phrase = phrase.toLowerCase()
   }
 
-  /**
-* Display phrase on game board
-*/
+  // Adds letter placeholders to the display when the game starts.
   addPhraseToDisplay () {
-    const lettersInPhrase = this.phrase.split('')
-    const phraseUl = document.getElementById('phrase')
+    const chars = this.phrase.split('')
+    const patt = /[a-z]/
 
-    lettersInPhrase.forEach(letter => {
-      if (letter === '') {
-        const spaceLet = document.createElement('li')
-        spaceLet.classList.add('space')
-        spaceLet.innerHTML = ''
-        phraseUl.appendChild(spaceLet)
+    for (const char of chars) {
+      const result = patt.test(char)
+      if (result) {
+        const li = document.createElement('li')
+
+        li.textContent = char
+        li.classList.add('hide', 'letter', char)
+
+        document.querySelector('#phrase ul').appendChild(li)
       } else {
-        const letterLi = document.createElement('li')
-        letterLi.classList.add('hide', 'letter')
-        letterLi.innerHTML = letter
-        phraseUl.appendChild(letterLi)
-      }
-    })
-  };
+        const li = document.createElement('li')
 
-  // checks to see if the letter selected by the player matches a letter in the phrase
-  selectedLetter (letter) {
-    if (this.phrase.includes(letter)) {
+        li.textContent = char
+        li.className = 'space'
+
+        document.querySelector('#phrase ul').appendChild(li)
+      }
+    }
+  }
+
+  // Checks to see if the letter selected by player matches a letter in the phrase
+  checkLetter (letter) {
+    if (this.phrase.toLowerCase().includes(letter)) {
       return true
     } else {
       return false
     }
   }
 
-  // check if the clicked letter exist in the active phrase. If it does, the letter in the phrase gets the 'show' class
-  matchedLetter (letter) {
-    const letterClass = document.getElementsByClassName(letter)
-    for (let j = 0; j < letterClass.length; j++) {
-      if (letterClass[j].innerHTML === letter) {
-        letterClass[j].classList.add('show')
-        letterClass[j].classList.remove('hide')
-      }
-    }
+  // Reveals the letters on the board that match the selection
+
+  showMatchedLetter (letter) {
+    const matched = document.querySelectorAll(`.${letter}`)
+    matched.forEach(matching => (matching.className = `show letter ${letter}`))
   }
 }
