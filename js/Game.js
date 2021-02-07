@@ -54,26 +54,6 @@ won
   }
 
   /**
-* Displays game over message
-* @param {boolean} gameWon - Whether or not the user won the game
-*/
-
-  gameOver (gameWon) {
-    const startScreen = document.getElementById('overlay')
-    startScreen.style.display = 'block'
-
-    const gameEndMessage = document.getElementById('game-over-message')
-    const gameEndOverlay = document.getElementById('overlay')
-    if (gameWon) {
-      gameEndMessage.textContent = 'Great Job, You Won!'
-      gameEndOverlay.classList.replace('start', 'win')
-    } else {
-      gameEndMessage.textContent = 'So Sorry You Lost... Beter Luck Next Time!'
-      gameEndOverlay.classList.replace('start', 'lose')
-    }
-  }
-
-  /**
 * Increases the value of the missed property
 * Removes a life from the scoreboard
 * Checks if player has remaining lives and ends game if player is out
@@ -85,6 +65,26 @@ won
 
     if (this.missed === 5) {
       this.gameOver()
+    }
+  }
+
+  /**
+* Displays game over message
+* @param {boolean} gameWon - Whether or not the user won the game
+*/
+
+  gameOver (gameWon) {
+    const startScreen = document.getElementById('overlay')
+    startScreen.style.display = 'block'
+
+    const gameEndMessage = document.getElementById('game-over-message')
+    const gameEndOverlay = document.getElementById('overlay')
+    if (gameWon) {
+      gameEndMessage.textContent = 'Awesome Job, You Won!'
+      gameEndOverlay.classList.replace('start', 'win')
+    } else {
+      gameEndMessage.textContent = 'So Sorry You Lost... Beter Luck Next Time!'
+      gameEndOverlay.classList.replace('start', 'lose')
     }
   }
 
