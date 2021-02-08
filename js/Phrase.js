@@ -13,10 +13,10 @@ class Phrase {
 */
   addPhraseToDisplay () {
     const chars = this.phrase.split('')
-    const patt = /[a-z]/
+    const figure = /[a-z]/
 
     for (const char of chars) {
-      const result = patt.test(char)
+      const result = figure.test(char)
       if (result) {
         const li = document.createElement('li')
 
@@ -35,7 +35,7 @@ class Phrase {
     }
   }
 
-  // Checks to see of if letter matches the letter in phrase
+  // Checks to see if letter matches the letter in phrase
   checkLetter (letter) {
     if (this.phrase.toLowerCase().includes(letter)) {
       return true

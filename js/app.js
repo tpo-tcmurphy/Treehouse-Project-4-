@@ -43,18 +43,10 @@ function resetGame (game) {
   }
 }
 
+// Once game is over resets the board and characters
 document.getElementById('btn__reset').addEventListener('click', function () {
   resetGame()
 
   game = new Game()
   game.startGame()
-})
-
-document.getElementById('qwerty').addEventListener('click', e => {
-  const keyButton = e.target
-
-  if (keyButton.className === 'key') {
-    keySound.play()
-    game.handleInteraction(keyButton)
-  }
 })
